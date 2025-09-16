@@ -19,7 +19,10 @@ namespace PracticeCode
         static string PlayerInput;
         static string ThrowStatus;
 
+        //creates a string collection
         static StringCollection ToolNames = new StringCollection();
+
+        //creates a string array                       //all the stuff in the array
         static String[] ToolNamesArr = new String[] {"dart", "knife", "screwdriver", "axe", "hammer", "1", "2", "3", "4", "5"};
 
         enum ToolType
@@ -31,14 +34,19 @@ namespace PracticeCode
             Hammer
         }
 
+        //creates var for random int
         static Random AccuracyRnD = new Random();
         static Random ScoreRnD = new Random();
 
+
+        //shows the HUD
         static void ShowHUD()
         {
+            //composite formatting (first number is the string, second number is the space between)
             Console.WriteLine("{0,0}{1,20}{2,20}{3,20}", $"Score: {ScoreHUD}", $"Accuracy: {Accuracy}", $"Tool: {ToolName}", $"Times Played: {PlayTimes}");
         }
 
+        //basic press any key setup
         static void PressAny()
         {
             Console.WriteLine("\nPress Any Key...");
@@ -46,22 +54,29 @@ namespace PracticeCode
             Console.Clear();
         }
 
+        //shows the tool options (\n moves the line downw)
         static void ChooseYourTool()
         {
             Console.WriteLine($"\nChoose Your Tool: Dart(1), Knife(2), Screwdriver(3), Axe(4), Hammer(5)");
             Console.WriteLine("\nType Your Answer (Number, or Name)...");
         }
 
+        //generates all the random variables and sets text
         static void ToolChoice()
         {
+            //takes PlayerInput and makes it equal to what the player types in the console
             PlayerInput = Console.ReadLine();
 
+            // the "||" means or, StringComparison.OrdinalIgnoreCase tells the console to be case insensitive to the PlayerInput variable
             if (PlayerInput == "1" || PlayerInput.Equals("Dart", StringComparison.OrdinalIgnoreCase))
             {
                 ToolName = "Dart";
+
+                //sets the Accuracy variable to the AccuracyRnD value (.Next(0, 100) makes the AccuracyRnD generate a number between 0, 100 (min, max))
                 Accuracy = AccuracyRnD.Next(0, 100);
                 if(Accuracy >= 15)
                 {
+                    //same with the Accuracy variable, just for score
                     ScoreHUD += ScoreRnD.Next(0, 15);
                     ThrowStatus = "Hit!";
                 }
@@ -130,12 +145,14 @@ namespace PracticeCode
 
         static void ToolThrown()
         {
+            //sets PlayerInput to all lowercase
             PlayerInput = PlayerInput.ToLower();
             if (ToolNames.Contains(PlayerInput))
             {
                 Console.Clear();
                 PlayTimes += 1;
                 ShowHUD();
+                //the $"" allows you to add variables into the string with {} without having to make it really ugly
                 Console.WriteLine($"\nYou threw your {ToolName}, and {ThrowStatus}");
                 Console.WriteLine($"\nYour Score is now: {ScoreHUD}");
                 PressAny();
@@ -166,6 +183,7 @@ namespace PracticeCode
             }
             else if (PlayerInput.Equals("N", StringComparison.OrdinalIgnoreCase) || PlayerInput.Equals("No", StringComparison.OrdinalIgnoreCase))
             {
+                //stop all code from executing and ends the program (closes on key press)
                 Environment.Exit(0);
             }
             else
@@ -194,8 +212,11 @@ namespace PracticeCode
 
         static void Main(string[] args)
         {
+            //sets the text on screen to white (or any other given colour)
             Console.ForegroundColor = ConsoleColor.White;
+            //sets the console tab name to the given string
             Console.Title = "Dart Game";
+            //adds all the strings in the string array ToolNamesArr into the StringCollection
             ToolNames.AddRange(ToolNamesArr);
 
             Play();
