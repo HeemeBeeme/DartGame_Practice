@@ -54,7 +54,7 @@ namespace PracticeCode
             Console.Clear();
         }
 
-        //shows the tool options (\n moves the line downw)
+        //shows the tool options (\n moves the line down)
         static void ChooseYourTool()
         {
             Console.WriteLine($"\nChoose Your Tool: Dart(1), Knife(2), Screwdriver(3), Axe(4), Hammer(5)");
