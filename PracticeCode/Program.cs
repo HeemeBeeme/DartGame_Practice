@@ -57,8 +57,10 @@ namespace PracticeCode
         //shows the tool options (\n moves the line down)
         static void ChooseYourTool()
         {
-            Console.WriteLine($"\nChoose Your Tool: Dart(1), Knife(2), Screwdriver(3), Axe(4), Hammer(5)");
-            Console.WriteLine("\nType Your Answer (Number, or Name)...");
+            Console.Write($"\nChoose Your Tool: ");
+            Console.Write("{0,5}{1,10}{2,16}{3,8}{4,11}", "Dart(1)", "Knife(2)", "Screwdriver(3)", "Axe(4)", "Hammer(5)");
+            Console.Write("\n{0,18}{1,7}{2,10}{3,16}{4,8}{5,11}", "Throwing Accuracy:", "85%", "65%", "50%", "25%", "15%");
+            Console.Write("\n\nType Your Answer (Number, or Name): ");
         }
 
         //generates all the random variables and sets text
@@ -73,7 +75,7 @@ namespace PracticeCode
                 ToolName = "Dart";
 
                 //sets the Accuracy variable to the AccuracyRnD value (.Next(0, 100) makes the AccuracyRnD generate a number between 0, 100 (min, max))
-                Accuracy = AccuracyRnD.Next(0, 100);
+                Accuracy = 100 - AccuracyRnD.Next(0, 100);
                 if(Accuracy >= 15)
                 {
                     //same with the Accuracy variable, just for score
@@ -88,10 +90,10 @@ namespace PracticeCode
             else if(PlayerInput == "2" || PlayerInput.Equals("Knife", StringComparison.OrdinalIgnoreCase))
             {
                 ToolName = "Knife";
-                Accuracy = AccuracyRnD.Next(0, 100);
+                Accuracy = 100 - AccuracyRnD.Next(0, 100);
                 if (Accuracy >= 35)
                 {
-                    ScoreHUD += ScoreRnD.Next(0, 65);
+                    ScoreHUD += ScoreRnD.Next(0, 35);
                     ThrowStatus = "Hit!";
                 }
                 else
@@ -102,7 +104,7 @@ namespace PracticeCode
             else if(PlayerInput == "3" || PlayerInput.Equals("Screwdriver", StringComparison.OrdinalIgnoreCase))
             {
                 ToolName = "Screwdriver";
-                Accuracy = AccuracyRnD.Next(0, 100);
+                Accuracy = 100 - AccuracyRnD.Next(0, 100);
                 if (Accuracy >= 50)
                 {
                     ScoreHUD += ScoreRnD.Next(0, 50);
@@ -116,10 +118,10 @@ namespace PracticeCode
             else if(PlayerInput == "4" || PlayerInput.Equals("Axe", StringComparison.OrdinalIgnoreCase))
             {
                 ToolName = "Axe";
-                Accuracy = AccuracyRnD.Next(0, 100);
+                Accuracy = 100 - AccuracyRnD.Next(0, 100);
                 if (Accuracy >= 75)
                 {
-                    ScoreHUD += ScoreRnD.Next(0, 25);
+                    ScoreHUD += ScoreRnD.Next(0, 75);
                     ThrowStatus = "Hit!";
                 }
                 else
@@ -130,7 +132,7 @@ namespace PracticeCode
             else if(PlayerInput == "5" || PlayerInput.Equals("Hammer", StringComparison.OrdinalIgnoreCase))
             {
                 ToolName = "Hammer";
-                Accuracy = AccuracyRnD.Next(0, 100);
+                Accuracy = 100 - AccuracyRnD.Next(0, 100);
                 if (Accuracy >= 85)
                 {
                     ScoreHUD += ScoreRnD.Next(0, 85);
